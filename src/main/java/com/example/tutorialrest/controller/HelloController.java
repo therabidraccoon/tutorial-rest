@@ -28,7 +28,7 @@ public class HelloController {
 		return p;
 	}
 	
-	@GetMapping("/persona/{eta}")
+	@GetMapping("/persona/{eta}/find-by-age")
 	public Persona setEtaPersona(@PathVariable("eta") Integer eta) {
 		Persona p = new Persona();
 		p.setNome("Paolo");
@@ -37,6 +37,9 @@ public class HelloController {
 		
 		return p;
 	}
+	
+//	@GetMapping("/persona/{nome}/find-by-name")
+//	@GetMapping("/persona/insert")
 	
 	@PostMapping("/persona-mod") //su postman ricordardi di impostare Header -> Content-Type = application/json e selezionare dal tab Body la casella "raw"
 	public Persona returnPersonaMod(@RequestBody Persona p) {

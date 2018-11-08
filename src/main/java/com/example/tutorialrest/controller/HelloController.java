@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,7 @@ import com.example.tutorialrest.model.Persona;
 @RestController
 public class HelloController {
 
-//	@RequestMapping(value="/test", method=RequestMethod.GET) equivale a:
+//	@RequestMapping(value="/persona", method=RequestMethod.POST)
 	@PostMapping("/persona")
 	public Persona test(@RequestParam("eta") Integer eta) {
 		Persona p = new Persona();
@@ -29,11 +31,11 @@ public class HelloController {
 	}
 	
 	@GetMapping("/persona/{eta}/find-by-age")
-	public Persona setEtaPersona(@PathVariable("eta") Integer eta) {
+	public Persona setEtaPersona(@PathVariable("eta") Integer age) {
 		Persona p = new Persona();
 		p.setNome("Paolo");
 		p.setCognome("Occhionero");
-		p.setEta(eta);
+		p.setEta(age);
 		
 		return p;
 	}

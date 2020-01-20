@@ -3,14 +3,14 @@ package com.example.tutorialrest.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,19 +44,25 @@ public class HelloController {
 //	@GetMapping("/persona/insert")
 	
 	@PostMapping("/persona-mod") //su postman ricordardi di impostare Header -> Content-Type = application/json e selezionare dal tab Body la casella "raw"
-	public Persona returnPersonaMod(@RequestBody Persona p) {
+	public Persona returnPersonaMod(@RequestBody Persona p, HttpServletResponse response) {
 		p.setNome(p.getNome() + " Modificato!");
-		
+		if(p.getCognome().length() < 3) {
+			p = null;
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
 		return p;
 	}
 	
 	@PostMapping("/persona-mod-status") //su postman ricordardi di impostare Header -> Content-Type = application/json e selezionare dal tab Body la casella "raw"
 	public ResponseEntity<Persona> returnPersonaModStatus(@RequestBody Persona p) {
 		p.setNome(p.getNome() + " Modificato!");
+		ResponseEntity<Persona> resp = null;
 		if(p.getCognome().length() < 3) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			resp = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			resp = new ResponseEntity<>(p, HttpStatus.ACCEPTED);
 		}
-		return new ResponseEntity<>(p, HttpStatus.ACCEPTED);
+		return resp;
 	}
 	
 	@GetMapping("/lista-persone")

@@ -30,7 +30,7 @@ public class HelloController {
 		return p;
 	}
 
-//	@RequestMapping(value="/persona", method=RequestMethod.POST)
+//	@RequestMapping(value = "/persona", method = RequestMethod.POST)
 	@PostMapping("/persona")
 	public Persona test(@RequestParam("eta") Integer eta) {
 		Persona p = new Persona();

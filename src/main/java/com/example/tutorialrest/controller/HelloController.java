@@ -73,7 +73,7 @@ public class HelloController {
 		if (p.getCognome().length() < 3) {
 			resp = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
-			resp = new ResponseEntity<>(p, HttpStatus.ACCEPTED);
+			resp = new ResponseEntity<>(p, HttpStatus.OK);
 		}
 		return resp;
 	}

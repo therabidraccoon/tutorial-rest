@@ -34,25 +34,21 @@ public class HelloController {
 	@PostMapping("/persona")
 	public Persona test(@RequestParam("eta") Integer eta) {
 		Persona p = new Persona();
-		p.setNome("Paolo");
-		p.setCognome("Occhionero");
+		p.setNome("Unvecchio");
+		p.setCognome("Stagista");
 		p.setEta(eta);
-
 		return p;
 	}
 
 	@GetMapping("/persona/{eta}/find-by-age")
 	public Persona setEtaPersona(@PathVariable("eta") Integer age) {
 		Persona p = new Persona();
-		p.setNome("Paolo");
-		p.setCognome("Occhionero");
+		p.setNome("Unvecchio");
+		p.setCognome("Stagista");
 		p.setEta(age);
 
 		return p;
 	}
-
-//	@GetMapping("/persona/{nome}/find-by-name")
-//	@GetMapping("/persona/insert")
 
 	@PostMapping("/persona-mod") // su postman ricordardi di impostare Header -> Content-Type = application/json
 									// e selezionare dal tab Body la casella "raw"
@@ -82,8 +78,8 @@ public class HelloController {
 	public List<Persona> getPersone() {
 		List<Persona> list = new ArrayList<>();
 		Persona p = new Persona();
-		p.setNome("Paolo");
-		p.setCognome("Occhionero");
+		p.setNome("Boh");
+		p.setCognome("Bih");
 		p.setEta(122);
 		list.add(p);
 
